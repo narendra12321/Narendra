@@ -1,0 +1,91 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calculator{
+            width: 300px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: aquamarine;
+        }
+        input{
+            width: 100%;
+            height: 50px;
+            text-align: right;
+            
+        }
+        .buttons{
+            width: 100%;
+            height: 250px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+             
+            gap: 5px;
+        }
+        .clear{
+            background-color: blueviolet;
+        }
+        button{
+            background-color: black;
+        color: white;
+        border-radius: 10px;
+    }
+    .equal{
+        background-color: chartreuse;
+    }
+    button:hover{
+        background-color: rgba(0, 0, 0, 0.256);
+    }
+    .delete{
+        background-color: yellow;
+    }
+         
+    </style>
+ </head>
+ <body>
+    <div class="calculator">
+        <main>
+        <input type="text" class="display" id="display" disabled>
+        <div class="buttons">
+            <button onclick="clearOn()" class="clear">AC</button>
+            <button onclick="deleteBack()" class="delete"><i class="ri-delete-back-2-line"></i></button>
+            <button onclick="displayOn('+/-')"><i class="ri-add-line"></i>/<i class="ri-subtract-fill"></i></button>
+            <button onclick="displayOn('/')"><i class="ri-divide-fill"></i></button>
+            <button onclick="displayOn('7')">7</button>
+            <button onclick="displayOn('8')">8</button>
+            <button onclick="displayOn('9')">9</button>
+            <button onclick="displayOn('*')"><i class="ri-close-line"></i></button>
+            <button onclick="displayOn('4')">4</button>
+            <button onclick="displayOn('5')">5</button>
+            <button onclick="displayOn('6')">6</button>
+            <button onclick="displayOn('-')"><i class="ri-subtract-fill"></i></button>
+            <button onclick="displayOn('1')">1</button>
+            <button onclick="displayOn('2')">2</button>
+            <button onclick="displayOn('3')">3</button>
+            <button onclick="displayOn('+')"><i class="ri-add-fill"></i></button>
+            <button onclick="displayOn('%')">%</button>
+            <button onclick="displayOn('0')">0</button>
+            <button onclick="displayOn('.')">.</button>
+            <button onclick="calculateResult()" class="equal">=</button>
+        </div>
+        </main>
+    </div>
+    <script src="calculator.js"></script>
+ </body>
+ </html>

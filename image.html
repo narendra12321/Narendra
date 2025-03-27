@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grayscale Image Filter</title>
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+  }
+  canvas {
+    border: 2px solid #ccc;
+    margin-top: 20px;
+  }
+  input {
+    margin: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Load Image and Apply Grayscale Filter</h2>
+<input type="file" id="upload" accept="image/*">
+<canvas id="canvas"></canvas>
+
+<script>
+const upload = document.getElementById('upload');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+upload.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  
+  if (file) {
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        
+        canvas.width = img.width;
+        canvas.height = img.height;
+        
+       
+        ctx.drawImage(img, 0, 0);
+
+         
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];     // Red
+          const g = data[i + 1]; // Green
+          const b = data[i + 2]; // Blue
+          
+          
+          const gray = (r + g + b) / 3;
+
+           
+          data[i] = gray;       // Red
+          data[i + 1] = gray;   // Green
+          data[i + 2] = gray;   // Blue
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+      };
+      img.src = e.target.result;
+    };
+    
+    reader.readAsDataURL(file);
+  }
+});
+</script>
+
+</body>
+</html>
